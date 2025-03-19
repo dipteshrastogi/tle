@@ -62,13 +62,11 @@ const ContestCard = ({ contest, isBookmarked }) => {
         <div className="relative bg-gray-700 w-full shadow-lg rounded-2xl p-6 mb-4 border border-gray-200">
             <h2 className="text-2xl font-bold text-white mb-2">{contest.title}</h2>
 
-            {/* Status and Start Time */}
             <div className="flex justify-between text-white mb-1">
                 <p className='text-lg'>Status: <span className={`font-medium ${contest.status === 'upcoming' ? 'text-green-500' : 'text-red-500'}`}>{contest.status}</span></p>
                 <p><Calendar className="inline-block mr-1" size={16} /> Start Time: <span className="font-medium">{new Date(contest.rawStartTime).toLocaleString()}</span></p>
             </div>
 
-            {/* Duration and Time Left */}
             <div className="flex justify-between mb-3">
                 <p className='text-white text-lg'><Timer className='inline-block mr-1' size={16} />Duration: <span className="font-medium text-white">{Math.floor(contest.rawDuration / 3600000)} hrs</span></p>
                 <p className="text-blue-600 font-semibold text-xl">Time Left: {timeLeft}</p>
