@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ContestCard from '../components/ContestCard';
 import { useContestStore } from '../stores/useContestStore';
 import { Filter, Search, RefreshCw } from 'lucide-react';
-import { useTheme } from '../components/ThemeProvider.jsx';  // Import your theme context
+import { useTheme } from '../components/ThemeProvider.jsx';  
 
 const HomePage = () => {
   const { allContests, fetchContests, isfetchingContests, bookmarkContest, isUpdating, triggerBookmark } = useContestStore();
@@ -10,7 +10,6 @@ const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
   
-  // Use your global theme context instead of local state
   const { theme } = useTheme();
 
   useEffect(() => {
@@ -37,7 +36,6 @@ const HomePage = () => {
 
   const filteredContests = allContests
     .filter(contest => {
-      // Search filter
       if (searchTerm) {
         return contest.title.toLowerCase().includes(searchTerm.toLowerCase());
       }
@@ -65,14 +63,12 @@ const HomePage = () => {
 
   return (
     <div className={`min-h-screen ${theme === "dark" ? "bg-gray-900" : "bg-white"} text-gray-800 dark:text-white`}>
-      {/* Header */}
       <header className={`${theme === "dark" ? "bg-gray-800" : "bg-gray-100"} shadow-lg py-6 px-8 mb-8`}>
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
           <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 mb-4 md:mb-0">
             Contests Hub
           </h1>
           
-          {/* Search and Filter */}
           <div className="flex w-full md:w-auto gap-4">
             <div className="relative w-full md:w-64">
               <input
@@ -106,7 +102,6 @@ const HomePage = () => {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        {/* Filter Drawer */}
         {isFilterDrawerOpen && (
           <div className={`${theme === "dark" ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"} rounded-xl shadow-xl p-6 mb-8 border`}>
             <div className="flex justify-between items-center mb-4">
@@ -144,7 +139,6 @@ const HomePage = () => {
           </div>
         )}
 
-        {/* Loading State */}
         {(isfetchingContests || isUpdating) ? (
           <div className="flex flex-col items-center justify-center py-16">
             <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
@@ -152,7 +146,6 @@ const HomePage = () => {
           </div>
         ) : (
           <>
-            {/* Contest Stats */}
             <div className="mb-8">
               <div className="flex justify-between items-center mb-4">
                 <h2 className={`${theme === "dark" ? "text-gray-300" : "text-gray-600"} text-2xl font-bold`}>Contest Feed</h2>
@@ -161,7 +154,6 @@ const HomePage = () => {
                 </p>
               </div>
               
-              {/* Active Filters */}
               {filterstate.length > 0 && (
                 <div className="flex flex-wrap gap-2 mb-4">
                   {filterstate.map((filter) => (
@@ -179,7 +171,6 @@ const HomePage = () => {
               )}
             </div>
 
-            {/* Contest Cards */}
             {filteredContests.length > 0 ? (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {filteredContests.map((contest, index) => (
