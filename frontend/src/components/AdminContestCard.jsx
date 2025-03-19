@@ -16,7 +16,6 @@ const AdminContestCard = ({ contest }) => {
     await updateSolutionLink(data);
   };
 
-  // Format duration to hours and minutes
   const formatDuration = (milliseconds) => {
     const hours = Math.floor(milliseconds / 3600000);
     const minutes = Math.floor((milliseconds % 3600000) / 60000);
